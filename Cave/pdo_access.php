@@ -27,14 +27,18 @@ $options = array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION);
       printf("Échec de la connexion : %s\n", $e->getMessage());
       exit();
     }
-$sql="SELECT * from article";
+// Ici la connexion à la BDD est OUVERTE
+$sql="SELECT * from pays";
 if(!$connexion->query($sql)) echo "Pb d'accès aux ARTICLES";
 else{
     print_r($connexion->query($sql));
     echo "<table border='2px'>";
      foreach ($connexion->query($sql) as $row)
-        echo "<tr><td>".$row['ID_ARTICLE']."</td><td>".$row['NOM_ARTICLE']."</td><td>".$row['PRIX_ACHAT']."</td></tr>";
+        echo "<tr><td>".$row['CODEPAYS']."</td><td>".$row['NOMPAYS']."</td></tr>";
+    echo "</table>";
 }
+
+
 ?>
 </body>
 

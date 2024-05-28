@@ -2,5 +2,5 @@
 define('USER',"root");
 define('PASSWD',"");
 define('SERVER',"localhost");
-define('BASE',"sdbm_v2");
+define('BASE',"cave");
 ?>
