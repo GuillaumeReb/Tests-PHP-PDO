@@ -38,7 +38,6 @@ else{
     echo "</table>";
 }
 
-
 ?>
 </body>
 
