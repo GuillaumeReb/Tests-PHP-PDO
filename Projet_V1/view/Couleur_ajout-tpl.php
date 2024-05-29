@@ -4,7 +4,7 @@
         echo @$Contenu;
 ?>
 
-<form action="./Continent_ajout.php" method="POST">
+<form action="./Couleur_ajout.php" method="POST">
     <div class="mb-3">
         <label for="idNom" class="form-label">Nom de la couleur</label>
         <input type="text" class="form-control" id="idNom" name="Nom" aria-describedby="nomHelp">
@@ -14,7 +14,7 @@
     <button type="reset" class="btn btn-danger">Annuler</button>
 </form>
 <br />
-<a href="./Continent_liste.php">
+<a href="./Couleur_liste.php">
     <button class="btn btn-secondary">Retout à la liste</button>
 </a>
 
