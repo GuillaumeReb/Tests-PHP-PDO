@@ -36,11 +36,14 @@
                             <a class="nav-link" href="Continent_liste.php">Gestion des Continents</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="Couleur_liste.php">Gestion des Couleurs</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
                     </ul>
                 </div>
             </nav>
-            <header>
+</header>
                 <?php echo @$Message; ?>
                 <h1><?php echo @$Titre; ?></h1>
