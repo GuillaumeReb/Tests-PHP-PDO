@@ -1,13 +1,14 @@
 <?php
+echo "test";
 //Modifier un utilisateur avec $sql = "UPDATE "" SET "" = "nouvel valeur" where 'id' = 3";
-
+//echo "test";
 require_once "init.php";
-
+echo "test";
 $Contenu = "";
 // print_r($GLOBALS);
 // Gestion du formulaire
 if (isset($_POST['Code'])) {
-    // Le formulaire a été soumis ==> il faut SUPPRIMER dans la BDD
+    // Le formulaire a été soumis ==> il faut MODIFIER dans la BDD
     try {
         $sth = $connexion->prepare('UPDATE couleur
                                     SET NOM_COULEUR = :nom_param                                   
@@ -15,8 +16,9 @@ if (isset($_POST['Code'])) {
 
         $sth->bindParam('id_param', $_POST['Code'], PDO::PARAM_INT);
         $sth->bindParam('nom_param', $_POST['Nom'], PDO::PARAM_STR);
+
         $sth->execute();
-        
+
     } catch (Exception $e) {
         header('Location: erreur.php?Message=Problème lors de la modification ' . $e->getMessage());
     }
@@ -24,23 +26,6 @@ if (isset($_POST['Code'])) {
     $code = $_POST['Code'];
     $nom = $_POST['Nom'];
   
-    // Génération du combo CONTINENT
-    $comboContinent = "";
-
-    $requete = "select * from couleur";
-    $resultat = $connexion->query($requete);
-    $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
-
-    foreach ($records as $uneLigne) {
-        $code_couleur = $uneLigne['ID_COULEUR'];
-        $nom_couleur = $uneLigne['NOM_COULEUR'];
-
-        // if ($code_continent == $_POST['Couleur']) {
-        //     $comboContinent .= "<option value='$code_couleur' selected>$nom_continent</option>";
-        // } else {
-        //     $comboContinent .= "<option value='$code_continent'>$nom_continent</option>";
-        // }
-    }
 
     $Contenu = "<div class='alert alert-success alert-dismissible fade show' role='alert'>
     <strong>Bravo!</strong> Elément bien modifié.
@@ -52,7 +37,7 @@ if (isset($_POST['Code'])) {
     // dans le formulaire enrécupérant les info depuis la BDD
     // echo $_GET['Code'];
 
-    // Récupération des informations du PAYS à modifier
+    // Récupération des informations de le couleur à modifier
     try {
         $sth = $connexion->prepare('SELECT * from couleur WHERE ID_COULEUR = :id_param');
 
@@ -67,25 +52,7 @@ if (isset($_POST['Code'])) {
 // print_r($result);
     $code = $result[0]['ID_COULEUR'];
     $nom = $result[0]['NOM_COULEUR'];
-    // $id_continent = $result[0]['ID_CONTINENT'];
-
-    // Génération du combo CONTINENT
-    // $comboContinent = "";
-
-    // $requete = "select * from continent";
-    // $resultat = $connexion->query($requete);
-    // $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
-
-    // foreach ($records as $uneLigne) {
-    //     $code_continent = $uneLigne['ID_CONTINENT'];
-    //     $nom_continent = $uneLigne['NOM_CONTINENT'];
-
-    //     if ($code_continent == $id_continent) {
-    //         $comboContinent .= "<option value='$code_continent' selected>$nom_continent</option>";
-    //     } else {
-    //         $comboContinent .= "<option value='$code_continent'>$nom_continent</option>";
-    //     }
-    // }
+    
 
     $Contenu = "<div class='alert alert-primary alert-dismissible fade show' role='alert'>
    <strong>Modification!</strong> Vous pouvez modifier les informations.
@@ -94,7 +61,7 @@ if (isset($_POST['Code'])) {
 }
 
 // Affichage de la VUE
-require "./view/Pays_modif-tpl.php";
+require "./view/Couleur_modif-tpl.php";
 
 
 ?>

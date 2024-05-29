@@ -6,7 +6,7 @@ $Contenu = "";
 // print_r($GLOBALS);
 // Gestion du formulaire
 if (isset($_POST['Code'])) {
-    // Le formulaire a été soumis ==> il faut SUPPRIMER dans la BDD
+    // Le formulaire a été soumis ==> il faut MODIFIER dans la BDD
     try {
         $sth = $connexion->prepare('UPDATE continent 
                                     SET NOM_CONTINENT = :nom_param

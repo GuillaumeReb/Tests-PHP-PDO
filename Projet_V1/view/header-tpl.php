@@ -47,6 +47,6 @@
                     </ul>
                 </div>
             </nav>
-            <header>
+</header>
                 <?php echo @$Message; ?>
                 <h1><?php echo @$Titre; ?></h1>

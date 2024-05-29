@@ -2,6 +2,7 @@
  $Titre = "Modification d'une couleur";
  require("view/header-tpl.php");
  echo @$Contenu;
+ echo "test2";
 ?>
 
 
