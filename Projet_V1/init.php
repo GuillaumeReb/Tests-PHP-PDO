@@ -3,11 +3,12 @@
 //   Constantes pour se connecter  //
 //   à la base de données          //
 /////////////////////////////////////
-define("SGBD_SERVER", "127.0.0.1");
-define("SGBD_PORT", "3306");
-define("SGBD_BDD", "SDBM_V2");
-define("SGBD_USER", "root");
-define("SGBD_PSWD", "");
+define('SGBD_SERVER', "127.0.0.1");
+define('SGBD_PORT', "3306");
+define('SGBD_BDD', "sdbm_v2");
+define('SGBD_USER', "root");
+define('SGBD_PSWD', "");
+
 
 define("SGBD_OPTIONS", array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));

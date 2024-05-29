@@ -39,6 +39,9 @@
                             <a class="nav-link" href="./Pays_liste.php">Les Pays</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="./Couleur_liste.php">Les Couleurs</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
                         </li>
                     </ul>
