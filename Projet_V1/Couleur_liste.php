@@ -32,8 +32,8 @@ foreach($records as $uneLigne){
     $Contenu .= "<td>" . $nom_COULEUR . "</td>";
     // }
 
-    $url_modif = "./view/Couleur_modif.php?Code="  . urlencode($code);//éviter les attaques XSS
-    $url_suppr = "./view/Couleur_suppr.php?Code="  . urlencode($code);
+    $url_modif = "./Couleur_modif.php?Code="  . urlencode($code);//éviter les attaques XSS
+    $url_suppr = "./Couleur_suppr.php?Code="  . urlencode($code);
     // Ajout des 2 boutons (MODIF et SUPPRESSION)
     $Contenu .= "<td><a href=$url_modif><button class='btn btn-warning'>Modifier</button></a>";
     $Contenu .= "<a href=$url_suppr><button class='btn btn-danger'>Supprimer</button></a></td>";
