@@ -5,11 +5,11 @@ require_once("init.php");
 if (isset($_POST["Id"])) {
     // Le formulaire a été soumis
     // je sauvegarde dans la BDD ==> UPDATE
-    $cont = new Continent(0, $_POST["Nom"]);
+    $cont = new Couleur(0, $_POST["Nom"]);
     // print_r($cont);
     $cont->ajout(); // Je déclenche le INSERT
 
-    header("location:Continent_liste.php?Message=Continent bien ajouté");
+    header("location:Couleur_liste.php?Message=Continent bien ajouté");
 
 }
 else {
@@ -19,4 +19,4 @@ else {
 
 
 // Je déclenche le RENDU de ma page
-require_once("view/Continent_ajout-tpl.php");
+require_once("view/Couleur_ajout-tpl.php");

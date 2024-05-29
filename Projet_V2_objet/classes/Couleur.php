@@ -1,11 +1,11 @@
 <?php
 
-class Continent extends Bdd {
+class Couleur extends Bdd {
     ///////////////////////////////////////////
     //////    Les attributs                 ///
     ///////////////////////////////////////////
-    protected $id_continent;
-    protected $nom_continent;
+    protected $id_couleur;
+    protected $nom_couleur;
 
 
     ///////////////////////////////////////////
@@ -14,8 +14,8 @@ class Continent extends Bdd {
     public function __construct(int $code=0, string $nom="" ) {
         parent::__construct();
 
-        $this->id_continent = $code;
-        $this->nom_continent = $nom;
+        $this->id_couleur = $code;
+        $this->nom_couleur = $nom;
     }
 
     ///////////////////////////////////////////
@@ -23,15 +23,15 @@ class Continent extends Bdd {
     ///////////////////////////////////////////
     public function __set( $nom_prop, $valeur)
     {
-         if (property_exists('Continent', $nom_prop)) { 
+         if (property_exists('Couleur', $nom_prop)) { 
              $this->$nom_prop = $valeur;
          }
-         else throw new Exception("Propriété inconnue dans CONTINENT");
+         else throw new Exception("Propriété inconnue dans couleur");
     }
      // Methode MAGIQUE GET
     public function __get( $nom_prop)  
      {
-        if (property_exists('Continent', $nom_prop)) {
+        if (property_exists('Couleur', $nom_prop)) {
              return $this->$nom_prop;
          }
          else return null;
@@ -42,7 +42,7 @@ class Continent extends Bdd {
     //////    Les méthodes                  ///
     ///////////////////////////////////////////
     public function liste() {
-        $resultat = $this->connexion->query("select * from continent order by NOM_CONTINENT asc");
+        $resultat = $this->connexion->query("select * from couleur order by NOM_COULEUR asc");
         $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
         return $records;
     }
@@ -51,10 +51,10 @@ class Continent extends Bdd {
 
     public function ajout() {
  
-        $requete = "insert into continent (NOM_CONTINENT) values (:nom)";
+        $requete = "insert into couleur (NOM_COULEUR) values (:nom)";
         $reponse = $this->connexion->prepare($requete);
 
-        $nom = $this->nom_continent;
+        $nom = $this->nom_couleur;
 
          
         // $reponse->bindValue(":nom", $nom, PDO::PARAM_STR);
@@ -65,24 +65,24 @@ class Continent extends Bdd {
 
     public function recherche($id) {
          
-        $resultat = $this->connexion->query("select * from continent where ID_CONTINENT =".$id);
+        $resultat = $this->connexion->query("select * from couleur where ID_COULEUR =".$id);
         $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        // Alimentation des attributs du continent
+        // Alimentation des attributs du couleur
         if (count($records) > 0) {
-            $this->__set("id_continent", $records[0]["ID_CONTINENT"]); 
-            $this->__set("nom_continent", $records[0]["NOM_CONTINENT"]); 
+            $this->__set("id_couleur", $records[0]["ID_COULEUR"]); 
+            $this->__set("nom_couleur", $records[0]["NOM_COULEUR"]); 
         }
         return $records;
   
      }
 
      public function modif() {
-        $requete = "update continent set NOM_CONTINENT=:nom where ID_CONTINENT=:id";
+        $requete = "update couleur set NOM_COULEUR=:nom where ID_COULEUR=:id";
         $reponse = $this->connexion->prepare($requete);
 
-        $id = $this->id_continent;
-        $nom = $this->nom_continent;
+        $id = $this->id_couleur;
+        $nom = $this->nom_couleur;
 
         $reponse->bindValue(":id", $id, PDO::PARAM_INT);
         // $reponse->bindValue(":nom", $nom, PDO::PARAM_STR);
@@ -91,10 +91,10 @@ class Continent extends Bdd {
      }
 
      public function suppr() {
-        $requete = "delete from continent where ID_CONTINENT=:id";
+        $requete = "delete from couleur where ID_COULEUR=:id";
         $reponse = $this->connexion->prepare($requete);
 
-        $id = $this->id_continent;
+        $id = $this->id_couleur;
 
         $reponse->bindValue(":id", $id, PDO::PARAM_INT);
         $reponse->execute();
