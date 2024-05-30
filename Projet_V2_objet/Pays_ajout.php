@@ -13,7 +13,17 @@ if (isset($_POST["Id"])) {
 
 }
 else {
-    $Contenu = "Code non reçu";
+    $comboContinent = "";
+    $cont = new Continent();
+    $list = $cont ->liste();
+
+    foreach($list as $uneLigne){
+        $code = $uneLigne['ID_CONTINENT'];
+        $nom = $uneLigne['NOM_CONTINENT'];
+
+        $comboContinent .= "<option value='$code'>$nom</option>";
+    }
+
 }
     
 

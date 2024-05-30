@@ -44,7 +44,9 @@ class Pays extends Bdd {
     //////    Les méthodes                  ///
     ///////////////////////////////////////////
     public function liste() {
-        $resultat = $this->connexion->query("select * from pays order by NOM_PAYS asc");
+        $resultat = $this->connexion->query("select * from pays inner join continent 
+        on pays.ID_CONTINENT = continent.ID_CONTINENT
+        order by NOM_PAYS asc");
         $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
         return $records;
     }
@@ -53,14 +55,16 @@ class Pays extends Bdd {
 
     public function ajout() {
  
-        $requete = "insert into pays (NOM_PAYS) values (:nom)";
+        $requete = "insert into pays (NOM_PAYS, ID_CONTINENT) values (:nom, :id2)";
         $reponse = $this->connexion->prepare($requete);
 
         $nom = $this->nom_pays;
+        $id2 = $this->id_continent;
 
          
         // $reponse->bindValue(":nom", $nom, PDO::PARAM_STR);
         $reponse->bindValue(":nom", htmlspecialchars($nom), PDO::PARAM_STR);
+        $reponse->bindValue(":id2", htmlspecialchars($id2), PDO::PARAM_STR);
         $reponse->execute();
  
     }
