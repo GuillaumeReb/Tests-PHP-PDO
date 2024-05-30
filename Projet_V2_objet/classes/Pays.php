@@ -56,7 +56,7 @@ class Pays extends Bdd {
         $requete = "insert into pays (NOM_PAYS) values (:nom)";
         $reponse = $this->connexion->prepare($requete);
 
-        $nom = $this->nom_continent;
+        $nom = $this->nom_pays;
 
          
         // $reponse->bindValue(":nom", $nom, PDO::PARAM_STR);
@@ -70,7 +70,7 @@ class Pays extends Bdd {
         $resultat = $this->connexion->query("select * from pays where ID_PAYS =".$id);
         $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
-        // Alimentation des attributs du continent
+        // Alimentation des attributs du pays
         if (count($records) > 0) {
             $this->__set("id_pays", $records[0]["ID_PAYS"]); 
             $this->__set("nom_pays", $records[0]["NOM_PAYS"]); 
@@ -99,7 +99,7 @@ class Pays extends Bdd {
         $requete = "delete from pays where ID_PAYS=:id";
         $reponse = $this->connexion->prepare($requete);
 
-        $id = $this->id_continent;
+        $id = $this->id_pays;
 
         $reponse->bindValue(":id", $id, PDO::PARAM_INT);
         $reponse->execute();
