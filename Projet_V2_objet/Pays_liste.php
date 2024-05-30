@@ -11,28 +11,28 @@ if (isset($_GET['Message'])) {
 
 require_once("init.php");
 
-$cont = new Continent();
+$cont = new Pays();
 
 $list = $cont->liste();
 
 // print_r($list);
 
 // Affichage du résultat
-$Contenu = "<a href='Continent_ajout.php'><button>Ajout</button></a><br/>";
+$Contenu = "<a href='Pays_ajout.php'><button>Ajout</button></a><br/>";
 $Contenu .= "<table class='table table-dark table-hover'>";
-$Contenu .= "<tr><th>Code</th><th>Nom</th><th>Actions</th></tr>";
+$Contenu .= "<tr><th>Code</th><th>Pays</th><th>Code Continent</th><th>Actions</th></tr>";
 foreach ($list as $uneLigne) {
     $Contenu .= "<tr>";
-    $code = $uneLigne["ID_CONTINENT"];
+    $code = $uneLigne["ID_PAYS"];
     foreach ($uneLigne as $key => $value) {
         $Contenu .=  "<td>" . $value . "</td>";
     }
     $Contenu .= "<td>";
-    $Contenu .= "<a href='Continent_modif.php?code=". $code ."'><button>Modif</button></a>";
-    $Contenu .= "<a href='Continent_suppr.php?code=". $code ."'><button>Suppr</button></a>";
+    $Contenu .= "<a href='Pays_modif.php?code=". $code ."'><button>Modif</button></a>";
+    $Contenu .= "<a href='Pays_suppr.php?code=". $code ."'><button>Suppr</button></a>";
     $Contenu .= "</td></tr>";
 }   
 $Contenu .= "</table>";
 
 // Demande le RENDU de la page
-require_once("view/Continent_liste-tpl.php");
+require_once("view/Pays_liste-tpl.php");

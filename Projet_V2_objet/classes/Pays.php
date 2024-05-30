@@ -1,38 +1,40 @@
 <?php
 
-class Continent extends Bdd {
+class Pays extends Bdd {
     ///////////////////////////////////////////
     //////    Les attributs                 ///
     ///////////////////////////////////////////
+    protected $id_pays;
+    protected $nom_pays;
     protected $id_continent;
-    protected $nom_continent;
 
 
     ///////////////////////////////////////////
     //////    Le constructeur               ///
     ///////////////////////////////////////////
-    public function __construct(int $code=0, string $nom="" ) {
+    public function __construct(int $code=0, string $nom="", int $code2=0 ) {
         parent::__construct();
 
-        $this->id_continent = $code;
-        $this->nom_continent = $nom;
+        $this->id_pays = $code;
+        $this->nom_pays = $nom;
+        $this->id_continent = $code2;
     }
 
     ///////////////////////////////////////////
-    //////    Les accesseurs                ///
+    ////// Les accesseurs : getter et setter///
     ///////////////////////////////////////////
-    public function __set( $nom_prop, $valeur)
+    public function __set( $nom_pays, $valeur)
     {
-         if (property_exists('Continent', $nom_prop)) { 
-             $this->$nom_prop = $valeur;
+         if (property_exists('Pays', $nom_pays)) { 
+             $this->$nom_pays = $valeur;
          }
-         else throw new Exception("Propriété inconnue dans CONTINENT");
+         else throw new Exception("Propriété inconnue dans Pays");
     }
      // Methode MAGIQUE GET
     public function __get( $nom_prop)  
      {
-        if (property_exists('Continent', $nom_prop)) {
-             return $this->$nom_prop;
+        if (property_exists('Pays', $nom_pays)) {
+             return $this->$nom_pays;
          }
          else return null;
     }
@@ -42,7 +44,7 @@ class Continent extends Bdd {
     //////    Les méthodes                  ///
     ///////////////////////////////////////////
     public function liste() {
-        $resultat = $this->connexion->query("select * from continent order by NOM_CONTINENT asc");
+        $resultat = $this->connexion->query("select * from pays order by NOM_PAYS asc");
         $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
         return $records;
     }
@@ -51,7 +53,7 @@ class Continent extends Bdd {
 
     public function ajout() {
  
-        $requete = "insert into continent (NOM_CONTINENT) values (:nom)";
+        $requete = "insert into pays (NOM_PAYS) values (:nom)";
         $reponse = $this->connexion->prepare($requete);
 
         $nom = $this->nom_continent;
@@ -65,33 +67,36 @@ class Continent extends Bdd {
 
     public function recherche($id) {
          
-        $resultat = $this->connexion->query("select * from continent where ID_CONTINENT =".$id);
+        $resultat = $this->connexion->query("select * from pays where ID_PAYS =".$id);
         $records = $resultat->fetchAll(PDO::FETCH_ASSOC);
 
         // Alimentation des attributs du continent
         if (count($records) > 0) {
-            $this->__set("id_continent", $records[0]["ID_CONTINENT"]); 
-            $this->__set("nom_continent", $records[0]["NOM_CONTINENT"]); 
+            $this->__set("id_pays", $records[0]["ID_PAYS"]); 
+            $this->__set("nom_pays", $records[0]["NOM_PAYS"]); 
+            $this->__set("id_continent", $records[0]["ID_CONTINENT"]);
         }
         return $records;
   
      }
 
      public function modif() {
-        $requete = "update continent set NOM_CONTINENT=:nom where ID_CONTINENT=:id";
+        $requete = "update pays set NOM_PAYS=:nom where ID_PAYS=:id";
         $reponse = $this->connexion->prepare($requete);
 
-        $id = $this->id_continent;
-        $nom = $this->nom_continent;
+        $id = $this->id_pays;
+        $nom = $this->nom_pays;
+        $id2 = $this->id_continent;
 
         $reponse->bindValue(":id", $id, PDO::PARAM_INT);
         // $reponse->bindValue(":nom", $nom, PDO::PARAM_STR);
         $reponse->bindValue(":nom", htmlspecialchars($nom), PDO::PARAM_STR);
+        $reponse->bindValue(":id", $id2, PDO::PARAM_INT);
         $reponse->execute();
      }
 
      public function suppr() {
-        $requete = "delete from continent where ID_CONTINENT=:id";
+        $requete = "delete from pays where ID_PAYS=:id";
         $reponse = $this->connexion->prepare($requete);
 
         $id = $this->id_continent;

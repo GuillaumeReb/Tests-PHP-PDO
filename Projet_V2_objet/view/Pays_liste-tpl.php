@@ -1,5 +1,5 @@
 <?php
-        $Titre = "Gestion des Continents";
+        $Titre = "Gestion des Pays";
         require("view/header-tpl.php");
         echo @$Contenu;
         require("view/footer-tpl.php");
