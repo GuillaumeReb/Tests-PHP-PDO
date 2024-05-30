@@ -5,7 +5,7 @@ require_once("init.php");
 if (isset($_POST["Id"])) {
     // Le formulaire a été soumis
     // je sauvegarde dans la BDD ==> UPDATE
-    $cont = new Pays(0, $_POST["Nom"]);
+    $cont = new Pays(0, $_POST["Nom"], $_POST["Continent"]);
     // print_r($cont);
     $cont->ajout(); // Je déclenche le INSERT
 

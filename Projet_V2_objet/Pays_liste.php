@@ -24,9 +24,9 @@ $Contenu .= "<tr><th>Code</th><th>Pays</th><th>Code Continent</th><th>Actions</t
 foreach ($list as $uneLigne) {
     $Contenu .= "<tr>";
     $code = $uneLigne["ID_PAYS"];
-    foreach ($uneLigne as $key => $value) {
-        $Contenu .=  "<td>" . $value . "</td>";
-    }
+    $Contenu .=  "<td>" .  $uneLigne["ID_PAYS"] . "</td>";
+    $Contenu .=  "<td>" .  $uneLigne["NOM_PAYS"] . "</td>";
+    $Contenu .=  "<td>" .  $uneLigne["NOM_CONTINENT"] . "</td>";
     $Contenu .= "<td>";
     $Contenu .= "<a href='Pays_modif.php?code=". $code ."'><button>Modif</button></a>";
     $Contenu .= "<a href='Pays_suppr.php?code=". $code ."'><button>Suppr</button></a>";

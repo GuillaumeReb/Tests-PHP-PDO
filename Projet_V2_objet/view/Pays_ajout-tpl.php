@@ -15,7 +15,7 @@
 
         <div class="form-group">
           <label for="Nom">Continent :</label>
-          <select name="Continent" id="">
+          <select class="form-control" name="Continent" id="">
                 <?php echo @$comboContinent;?>
           </select>
         </div>

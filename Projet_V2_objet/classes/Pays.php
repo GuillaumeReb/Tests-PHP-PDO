@@ -55,16 +55,16 @@ class Pays extends Bdd {
 
     public function ajout() {
  
-        $requete = "insert into pays (NOM_PAYS, ID_CONTINENT) values (:nom, :id2)";
+        $requete = "insert into pays (NOM_PAYS, ID_CONTINENT) values (:nom, :idContinent)";
         $reponse = $this->connexion->prepare($requete);
 
         $nom = $this->nom_pays;
-        $id2 = $this->id_continent;
+        $idContinent = $this->id_continent;
 
          
         // $reponse->bindValue(":nom", $nom, PDO::PARAM_STR);
         $reponse->bindValue(":nom", htmlspecialchars($nom), PDO::PARAM_STR);
-        $reponse->bindValue(":id2", htmlspecialchars($id2), PDO::PARAM_STR);
+        $reponse->bindValue(":idContinent", htmlspecialchars($idContinent), PDO::PARAM_INT);        
         $reponse->execute();
  
     }
