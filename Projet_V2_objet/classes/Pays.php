@@ -31,7 +31,7 @@ class Pays extends Bdd {
          else throw new Exception("Propriété inconnue dans Pays");
     }
      // Methode MAGIQUE GET
-    public function __get( $nom_prop)  
+    public function __get( $nom_pays)  
      {
         if (property_exists('Pays', $nom_pays)) {
              return $this->$nom_pays;
