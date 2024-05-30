@@ -10,20 +10,20 @@ if (isset($_GET["code"])) {
     // Je dois aller rechercher dans la Bdd les infos
     // et les afficher dans un formulaire
     $Id = $_GET["code"]; // Alimente la Zone ID du formulaire
-    $cont = new Continent();
-    $cont->recherche($Id); 
+    $pay = new Pays();
+    $pay->recherche($Id); 
     
-    $Nom = $cont->nom_continent; // Alimente la Zone NOM du formulaire
+    $Nom = $pay->nom_pays; // Alimente la Zone NOM du formulaire
 
 } else {
     if (isset($_POST["Id"])) {
         // Le formulaire a été soumis
         // je sauvegarde dans la BDD ==> UPDATE
-        $cont = new Continent($_POST["Id"], $_POST["Nom"]);
+        $pay = new Pays($_POST["Id"], $_POST["Nom"]);
         // print_r($cont);
-        $cont->suppr(); // Je déclenche le DELETE
+        $pay->suppr(); // Je déclenche le DELETE
 
-        header("location:Continent_liste.php?Message=Continent {$_POST["Id"]} bien supprimé");
+        header("location:Pays_liste.php?Message=Pays {$_POST["Id"]} , {$_POST["Nom"]} bien supprimé");
 
     }
     else {
@@ -33,4 +33,4 @@ if (isset($_GET["code"])) {
 }
 
 // Je déclenche le RENDU de ma page
-require_once("view/Continent_suppr-tpl.php");
+require_once("view/Pays_suppr-tpl.php");
